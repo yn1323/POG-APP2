@@ -15,9 +15,7 @@ class _HomeState extends State<Home> {
         // backgroundColor: Theme.of(context).primaryColor,
         title: const Text('APPBAR!!!'),
       ),
-      body: const Center(
-        child: Text('Hoge'),
-      ),
+      body: Column(),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.admin_panel_settings_sharp),
         onPressed: () {},
