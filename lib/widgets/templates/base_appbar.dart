@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pog_app2/widgets/atoms/button_return.dart';
 
 class BaseAppBar extends StatelessWidget {
   const BaseAppBar({
@@ -12,14 +13,17 @@ class BaseAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String currentRoute = ModalRoute.of(context)!.settings.name ?? '';
+
     return NestedScrollView(
       headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
         return <Widget>[
           SliverAppBar(
+            forceElevated: true,
             title: Text(title),
             pinned: false,
             floating: false,
-            forceElevated: innerBoxIsScrolled,
+            leading: currentRoute == '/config' ? const ButtonReturn() : null,
           ),
         ];
       },
