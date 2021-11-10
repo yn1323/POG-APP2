@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-// import 'package:google_fonts/google_fonts.dart';
+
+const locale = Locale("ja", "JP");
 
 final ColorScheme lightTheme = ColorScheme(
   primary: Colors.amber[700]!, // appBarの背景、ElevatedButtonの色など
@@ -32,26 +33,3 @@ const ColorScheme darkTheme = ColorScheme(
   onError: Colors.white,
   brightness: Brightness.light,
 );
-
-// final TextTheme theTextTheme =
-//     GoogleFonts.abrilFatfaceTextTheme(Typography.material2018().black.copyWith(
-//           headline1: TextStyle(color: Colors.brown),
-//           headline2: TextStyle(color: Colors.brown),
-//           headline3: TextStyle(color: Colors.brown),
-//           headline4: TextStyle(color: Colors.brown),
-//           headline5:
-//               TextStyle(color: Colors.teal), // AboutDialogのapplicationNameなど
-//           headline6: TextStyle(color: Colors.cyan), // AlertDialogのtitleなど
-//           subtitle1: TextStyle(color: Colors.orange), // ListTileのtitleなど
-//           subtitle2: TextStyle(color: Colors.brown),
-//           bodyText1:
-//               TextStyle(color: Colors.pink[200]), // Drawer内のListTileのtitleなど
-//           bodyText2: TextStyle(color: Colors.red), // 通常のTextなど
-//           // ボタンの色はprimaryColorやonPrimaryで上書きされるため、下の.copyWithでフォントを指定してわかるようにします。
-//           button: TextStyle(color: Colors.brown),
-//           caption: TextStyle(color: Colors.purple), // ListTileのsubtitleなど
-//           overline: TextStyle(color: Colors.brown),
-//         )).copyWith(
-//   button: GoogleFonts.sofia(), // ElevatedButtonのテキストなど
-// );
-

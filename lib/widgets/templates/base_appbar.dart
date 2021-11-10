@@ -20,11 +20,6 @@ class BaseAppBar extends StatelessWidget {
             pinned: false,
             floating: false,
             forceElevated: innerBoxIsScrolled,
-            leading: IconButton(
-              icon: const Icon(Icons.menu_sharp),
-              tooltip: 'Show Drawer',
-              onPressed: () {},
-            ),
           ),
         ];
       },
