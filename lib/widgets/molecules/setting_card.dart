@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:pog_app2/widgets/organisms/reorder_settings.dart';
 
 class SettingCard extends StatelessWidget {
-  final int index;
-  final Function(int) delete;
+  final ITEM info;
+  final Function(ITEM) delete;
 
-  const SettingCard({Key? key, required this.index, required this.delete})
+  const SettingCard({Key? key, required this.info, required this.delete})
       : super(key: key);
 
   Future<bool?> confirmDismiss(BuildContext context, DismissDirection _) async {
@@ -32,15 +33,30 @@ class SettingCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dismissible(
-      key: Key('$index'),
+      key: Key('$info["order"]'),
       child: Card(
-        elevation: 0,
+        elevation: 3,
         child: Padding(
           padding: const EdgeInsets.all(20.0),
-          child: Text('Hello world $index'),
+          child: Column(
+            children: <Widget>[
+              TextFormField(
+                initialValue: info["group"],
+                decoration: const InputDecoration(
+                  hintText: 'グループ名',
+                ),
+              ),
+              TextFormField(
+                initialValue: info["url"],
+                decoration: const InputDecoration(
+                  hintText: 'URL',
+                ),
+              ),
+            ],
+          ),
         ),
       ),
-      onDismissed: (_) => delete(index),
+      onDismissed: (_) => delete(info),
       confirmDismiss: (_) => confirmDismiss(context, _),
     );
   }

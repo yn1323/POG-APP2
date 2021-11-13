@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pog_app2/widgets/atoms/base_divider.dart';
-import 'package:pog_app2/widgets/molecules/base_drawer_header.dart';
+import 'package:pog_app2/widgets/templates/base_drawer_header.dart';
 
 class DrawerList extends StatefulWidget {
   const DrawerList({

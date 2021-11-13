@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pog_app2/widgets/molecules/setting_card.dart';
 
+typedef ITEM = Map<String, dynamic>;
+
 class ReorderSettings extends StatefulWidget {
   const ReorderSettings({Key? key}) : super(key: key);
 
@@ -9,11 +11,27 @@ class ReorderSettings extends StatefulWidget {
 }
 
 class _ReorderSettingsState extends State<ReorderSettings> {
-  List<int> items = [1, 2, 3, 4, 5];
+  List<ITEM> items = [
+    {
+      "url": "http://hogehoge1",
+      "group": "group1",
+      "order": 1,
+    },
+    {
+      "url": "http://hogehoge2",
+      "group": "group2",
+      "order": 2,
+    },
+    {
+      "url": "http://hogehoge3",
+      "group": "group3",
+      "order": 3,
+    },
+  ];
 
-  void deleteCard(int index) {
+  void deleteCard(ITEM item) {
     setState(() {
-      items.remove(index);
+      items.remove(item);
     });
   }
 
@@ -22,9 +40,9 @@ class _ReorderSettingsState extends State<ReorderSettings> {
     return ReorderableListView(
       children: items
           .map(
-            (index) => SettingCard(
-              index: index,
-              key: UniqueKey(),
+            (item) => SettingCard(
+              info: item,
+              key: item["order"],
               delete: deleteCard,
             ),
           )
@@ -32,7 +50,7 @@ class _ReorderSettingsState extends State<ReorderSettings> {
       onReorder: (int oldIndex, int newIndex) {
         setState(() {
           final int insertIndex = oldIndex < newIndex ? newIndex - 1 : newIndex;
-          final int item = items.removeAt(oldIndex);
+          var item = items.removeAt(oldIndex);
           items.insert(insertIndex, item);
         });
       },
