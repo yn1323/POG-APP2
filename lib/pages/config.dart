@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pog_app2/widgets/templates/base_appbar.dart';
-import 'package:pog_app2/widgets/templates/base_drawer.dart';
 import 'package:pog_app2/widgets/templates/base_floating_action_button.dart';
+import 'package:pog_app2/widgets/organisms/reorder_settings.dart';
 
 class Config extends StatefulWidget {
   const Config({Key? key}) : super(key: key);
@@ -19,10 +19,9 @@ class _ConfigState extends State<Config> {
     return Scaffold(
       body: BaseAppBar(
         title: title,
-        body: body,
+        body: const ReorderSettings(),
       ),
       floatingActionButton: const NFloatingActionButton(),
-      drawer: const BaseDrawer(),
     );
   }
 }

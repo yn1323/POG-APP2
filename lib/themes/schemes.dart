@@ -7,7 +7,7 @@ final ColorScheme lightTheme = ColorScheme(
   primaryVariant: Colors.amber[900]!,
   secondary: Colors.green[600]!, // FloatingActionButtonの色など
   secondaryVariant: Colors.green[800]!,
-  surface: Colors.grey[200]!, // Cardの色など
+  surface: Colors.grey[50]!, // Cardの色など
   background: Colors.grey[50]!, // Scaffoldのbodyの背景色など
   error: Colors.red[600]!, // TextFormFieldのvalidation失敗時の色など
   onPrimary: Colors.grey[50]!, // ElevatedButtonのテキストの色など
