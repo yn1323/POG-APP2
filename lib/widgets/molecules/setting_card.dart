@@ -34,22 +34,30 @@ class SettingCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dismissible(
       key: Key('$info["order"]'),
-      child: Card(
-        elevation: 3,
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
+      child: GestureDetector(
+        // NOTE: キャレットがあるカード移動時のエラー防止
+        onTapDown: (_) => FocusScope.of(context).unfocus(),
+        child: Card(
+          elevation: 3,
+          child: Stack(
             children: <Widget>[
-              TextFormField(
-                initialValue: info["group"],
-                decoration: const InputDecoration(
-                  hintText: 'グループ名',
-                ),
-              ),
-              TextFormField(
-                initialValue: info["url"],
-                decoration: const InputDecoration(
-                  hintText: 'URL',
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  children: <Widget>[
+                    TextFormField(
+                      initialValue: info["group"],
+                      decoration: const InputDecoration(
+                        hintText: 'グループ名',
+                      ),
+                    ),
+                    TextFormField(
+                      initialValue: info["url"],
+                      decoration: const InputDecoration(
+                        hintText: 'URL',
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],

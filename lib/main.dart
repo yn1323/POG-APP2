@@ -17,7 +17,7 @@ void main() {
         locale,
       ],
       theme: ThemeData.from(colorScheme: lightTheme),
-      initialRoute: '/',
+      initialRoute: '/config',
       routes: {
         '/': (context) => const Home(),
         '/config': (context) => const Config(),

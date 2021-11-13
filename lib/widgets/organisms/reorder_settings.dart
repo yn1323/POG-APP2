@@ -42,7 +42,7 @@ class _ReorderSettingsState extends State<ReorderSettings> {
           .map(
             (item) => SettingCard(
               info: item,
-              key: item["order"],
+              key: UniqueKey(),
               delete: deleteCard,
             ),
           )
