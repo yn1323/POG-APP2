@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:pog_app2/imports.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 typedef ConfigListType = List<Config>;
+ConfigListType initialVal = [Config(order: 1, url: '', group: '')];
 
 class Config {
   Config({required this.order, required this.url, required this.group});
@@ -13,9 +17,18 @@ class Config {
   String toString() {
     return 'Todo(order: $order, url: $url, group: $group)';
   }
+
+  Map toMap() {
+    return {
+      "order": order,
+      "url": url,
+      "group": group,
+    };
+  }
 }
 
 class ConfigList extends StateNotifier<ConfigListType> {
+  final String keyName = 'configList';
   ConfigList(ConfigListType? initialTask) : super(initialTask ?? []);
 
   void addCard() {
@@ -34,7 +47,7 @@ class ConfigList extends StateNotifier<ConfigListType> {
     state = [...state];
   }
 
-  void editCard(Config target) {
+  void editCard(Config target) async {
     ConfigListType newState = [];
     for (var s in state) {
       if (s.order == target.order) {
@@ -43,15 +56,49 @@ class ConfigList extends StateNotifier<ConfigListType> {
         newState.add(s);
       }
     }
+
+    final encoded = newState.map((e) => json.encode(e.toMap())).toList();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    prefs.setStringList(keyName, encoded);
+
     state = newState;
+  }
+
+  void setInitialVal() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (!prefs.containsKey(keyName)) {
+      return;
+    }
+    ConfigListType d = initialVal;
+    try {
+      List<String> stArr = prefs.getStringList(keyName) ?? [];
+
+      List<Map<String, dynamic>> tmp = stArr.map((e) {
+        final a = json.decode(e);
+        return {
+          "order": a["order"],
+          "url": a["url"],
+          "group": a["group"],
+        };
+      }).toList();
+      d = tmp
+          .map((e) =>
+              Config(url: e["url"], group: e["group"], order: e["order"]))
+          .toList();
+    } catch (e) {
+      // ignore: avoid_print
+      print("config_list.dart");
+      // ignore: avoid_print
+      print(e);
+    } finally {
+      state = d;
+    }
   }
 }
 
-final configListProvider =
-    StateNotifierProvider<ConfigList, List<Config>>((ref) {
-  return ConfigList([
-    Config(order: 1, url: '', group: ''),
-    Config(order: 2, url: 'http:2', group: 'group2'),
-    Config(order: 3, url: 'http:3', group: 'group3'),
-  ]);
-});
+final configListProvider = StateNotifierProvider<ConfigList, List<Config>>(
+  (ref) {
+    return ConfigList(initialVal);
+  },
+);

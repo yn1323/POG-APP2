@@ -16,6 +16,12 @@ class _ConfigState extends ConsumerState<Config> {
   Widget body = const Text('this is setting');
 
   @override
+  void initState() {
+    super.initState();
+    ref.read(configListProvider.notifier).setInitialVal();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final bool showButton = ref.watch(configListProvider).length < 10;
 
