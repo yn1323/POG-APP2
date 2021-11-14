@@ -34,7 +34,17 @@ class ConfigList extends StateNotifier<ConfigListType> {
     state = [...state];
   }
 
-  void editCard(Config target) {}
+  void editCard(Config target) {
+    ConfigListType newState = [];
+    for (var s in state) {
+      if (s.order == target.order) {
+        newState.add(target);
+      } else {
+        newState.add(s);
+      }
+    }
+    state = newState;
+  }
 }
 
 final configListProvider =
