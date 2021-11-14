@@ -29,8 +29,6 @@ class SettingCard extends HookConsumerWidget {
   }
 
   void saveCurrentValue(WidgetRef ref, Config config) {
-    print("saving...");
-    print(config.toString());
     ref.read(configListProvider.notifier).editCard(config);
   }
 
