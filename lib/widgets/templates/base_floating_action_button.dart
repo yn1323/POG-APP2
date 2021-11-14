@@ -1,15 +1,19 @@
-import 'package:flutter/material.dart';
+import 'package:pog_app2/imports.dart';
+import 'package:pog_app2/providers/config_list.dart';
 
-class NFloatingActionButton extends StatelessWidget {
+class NFloatingActionButton extends HookConsumerWidget {
   const NFloatingActionButton({
     Key? key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final configList = ref.watch(configListProvider);
     return FloatingActionButton(
-      child: const Icon(Icons.admin_panel_settings_sharp),
-      onPressed: () {},
+      child: const Icon(Icons.add),
+      onPressed: () {
+        ref.read(configListProvider.notifier).addCard();
+      },
     );
   }
 }

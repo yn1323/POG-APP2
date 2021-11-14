@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:pog_app2/imports.dart';
 import 'package:pog_app2/pages/home.dart';
 import 'package:pog_app2/pages/config.dart';
 import 'package:pog_app2/themes/schemes.dart';
@@ -6,7 +6,20 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   runApp(
-    MaterialApp(
+    const ProviderScope(
+      child: MyApp(),
+    ),
+  );
+}
+
+class MyApp extends HookConsumerWidget {
+  const MyApp({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return MaterialApp(
       locale: locale,
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
@@ -22,6 +35,6 @@ void main() {
         '/': (context) => const Home(),
         '/config': (context) => const Config(),
       },
-    ),
-  );
+    );
+  }
 }

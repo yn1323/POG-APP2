@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:pog_app2/imports.dart';
 
 class NDivider extends StatelessWidget {
   const NDivider({

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:pog_app2/imports.dart';
 import 'package:pog_app2/widgets/templates/base_appbar.dart';
 import 'package:pog_app2/widgets/templates/base_floating_action_button.dart';
 import 'package:pog_app2/widgets/organisms/reorder_settings.dart';
@@ -19,7 +19,7 @@ class _ConfigState extends State<Config> {
     return Scaffold(
       body: BaseAppBar(
         title: title,
-        body: const ReorderSettings(),
+        body: ReorderSettings(),
       ),
       floatingActionButton: const NFloatingActionButton(),
     );

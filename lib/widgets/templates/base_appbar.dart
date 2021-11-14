@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:pog_app2/imports.dart';
 import 'package:pog_app2/widgets/atoms/button_return.dart';
 
 class BaseAppBar extends StatelessWidget {
@@ -27,10 +27,7 @@ class BaseAppBar extends StatelessWidget {
           ),
         ];
       },
-      body: Padding(
-        padding: const EdgeInsets.all(8),
-        child: body,
-      ),
+      body: body,
     );
   }
 }

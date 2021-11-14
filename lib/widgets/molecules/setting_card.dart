@@ -1,12 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:pog_app2/widgets/organisms/reorder_settings.dart';
+import 'package:pog_app2/imports.dart';
+import 'package:pog_app2/providers/config_list.dart';
 
-class SettingCard extends StatelessWidget {
-  final ITEM info;
-  final Function(ITEM) delete;
+class SettingCard extends HookConsumerWidget {
+  final Config info;
 
-  const SettingCard({Key? key, required this.info, required this.delete})
-      : super(key: key);
+  const SettingCard({Key? key, required this.info}) : super(key: key);
 
   Future<bool?> confirmDismiss(BuildContext context, DismissDirection _) async {
     return await showDialog(
@@ -31,7 +29,7 @@ class SettingCard extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Dismissible(
       key: Key('$info["order"]'),
       child: GestureDetector(
@@ -46,13 +44,13 @@ class SettingCard extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     TextFormField(
-                      initialValue: info["group"],
+                      initialValue: info.group,
                       decoration: const InputDecoration(
-                        hintText: 'グループ名',
+                        hintText: "group",
                       ),
                     ),
                     TextFormField(
-                      initialValue: info["url"],
+                      initialValue: info.url,
                       decoration: const InputDecoration(
                         hintText: 'URL',
                       ),
@@ -64,7 +62,7 @@ class SettingCard extends StatelessWidget {
           ),
         ),
       ),
-      onDismissed: (_) => delete(info),
+      onDismissed: (_) {},
       confirmDismiss: (_) => confirmDismiss(context, _),
     );
   }

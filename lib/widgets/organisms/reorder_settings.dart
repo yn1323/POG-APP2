@@ -1,58 +1,28 @@
-import 'package:flutter/material.dart';
+import 'package:pog_app2/imports.dart';
+import 'package:pog_app2/providers/config_list.dart';
 import 'package:pog_app2/widgets/molecules/setting_card.dart';
 
-typedef ITEM = Map<String, dynamic>;
-
-class ReorderSettings extends StatefulWidget {
+class ReorderSettings extends HookConsumerWidget {
   const ReorderSettings({Key? key}) : super(key: key);
 
   @override
-  State<ReorderSettings> createState() => _ReorderSettingsState();
-}
-
-class _ReorderSettingsState extends State<ReorderSettings> {
-  List<ITEM> items = [
-    {
-      "url": "http://hogehoge1",
-      "group": "group1",
-      "order": 1,
-    },
-    {
-      "url": "http://hogehoge2",
-      "group": "group2",
-      "order": 2,
-    },
-    {
-      "url": "http://hogehoge3",
-      "group": "group3",
-      "order": 3,
-    },
-  ];
-
-  void deleteCard(ITEM item) {
-    setState(() {
-      items.remove(item);
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final configList = ref.watch(configListProvider);
     return ReorderableListView(
-      children: items
+      children: configList
           .map(
-            (item) => SettingCard(
-              info: item,
+            (config) => SettingCard(
+              info: config,
               key: UniqueKey(),
-              delete: deleteCard,
             ),
           )
           .toList(),
       onReorder: (int oldIndex, int newIndex) {
-        setState(() {
-          final int insertIndex = oldIndex < newIndex ? newIndex - 1 : newIndex;
-          var item = items.removeAt(oldIndex);
-          items.insert(insertIndex, item);
-        });
+        // setState(() {
+        //   final int insertIndex = oldIndex < newIndex ? newIndex - 1 : newIndex;
+        //   var item = items.removeAt(oldIndex);
+        //   items.insert(insertIndex, item);
+        // });
       },
     );
   }

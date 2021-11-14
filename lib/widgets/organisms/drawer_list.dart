@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:pog_app2/imports.dart';
 import 'package:pog_app2/widgets/atoms/base_divider.dart';
 import 'package:pog_app2/widgets/templates/base_drawer_header.dart';
 

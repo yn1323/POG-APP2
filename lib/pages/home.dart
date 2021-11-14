@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:pog_app2/imports.dart';
 import 'package:pog_app2/widgets/templates/base_appbar.dart';
 import 'package:pog_app2/widgets/templates/base_drawer.dart';
 import 'package:pog_app2/widgets/templates/base_floating_action_button.dart';
