@@ -62,7 +62,8 @@ class SettingCard extends HookConsumerWidget {
           ),
         ),
       ),
-      onDismissed: (_) {},
+      onDismissed: (_) =>
+          ref.read(configListProvider.notifier).removeCard(info),
       confirmDismiss: (_) => confirmDismiss(context, _),
     );
   }

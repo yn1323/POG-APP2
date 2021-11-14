@@ -8,7 +8,6 @@ class NFloatingActionButton extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final configList = ref.watch(configListProvider);
     return FloatingActionButton(
       child: const Icon(Icons.add),
       onPressed: () {

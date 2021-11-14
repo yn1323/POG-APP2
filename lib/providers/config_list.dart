@@ -18,18 +18,23 @@ class Config {
 class ConfigList extends StateNotifier<ConfigListType> {
   ConfigList(ConfigListType? initialTask) : super(initialTask ?? []);
 
-  // //新規タスクの追加
-  // void addTask(String title) {
-  //   state = [...state, Config(title: title)];
-  // }
   void addCard() {
     state = [...state, Config(order: state.length + 1, url: '', group: '')];
   }
 
-  // //タスクの削除
-  // void deleteTask(Config target) {
-  //   state = state.where((task) => task.id != target.id).toList();
-  // }
+  void reorderCard(int oldIndex, int newIndex) {
+    final insertIndex = oldIndex < newIndex ? newIndex - 1 : newIndex;
+    final item = state.removeAt(oldIndex);
+    state.insert(insertIndex, item);
+    state = [...state];
+  }
+
+  void removeCard(Config target) {
+    state.remove(target);
+    state = [...state];
+  }
+
+  void editCard(Config target) {}
 }
 
 final configListProvider =

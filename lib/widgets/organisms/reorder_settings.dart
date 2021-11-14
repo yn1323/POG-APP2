@@ -18,11 +18,7 @@ class ReorderSettings extends HookConsumerWidget {
           )
           .toList(),
       onReorder: (int oldIndex, int newIndex) {
-        // setState(() {
-        //   final int insertIndex = oldIndex < newIndex ? newIndex - 1 : newIndex;
-        //   var item = items.removeAt(oldIndex);
-        //   items.insert(insertIndex, item);
-        // });
+        ref.read(configListProvider.notifier).reorderCard(oldIndex, newIndex);
       },
     );
   }
