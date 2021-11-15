@@ -116,7 +116,7 @@ class ConfigList extends StateNotifier<ConfigListType> {
   }
 }
 
-final configListProvider = StateNotifierProvider<ConfigList, List<Config>>(
+final configListProvider = StateNotifierProvider<ConfigList, ConfigListType>(
   (ref) {
     return ConfigList(initialVal);
   },
