@@ -38,6 +38,36 @@ class ConfigList extends StateNotifier<ConfigListType> {
     prefs.setStringList(keyName, encoded);
   }
 
+  Future<ConfigListType> _fetch() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (!prefs.containsKey(keyName)) {
+      return [];
+    }
+    ConfigListType d = initialVal;
+    try {
+      List<String> stArr = prefs.getStringList(keyName) ?? [];
+
+      List<Map<String, dynamic>> tmp = stArr.map((e) {
+        final a = json.decode(e);
+        return {
+          "order": a["order"],
+          "url": a["url"],
+          "group": a["group"],
+        };
+      }).toList();
+      d = tmp
+          .map((e) =>
+              Config(url: e["url"], group: e["group"], order: e["order"]))
+          .toList();
+    } catch (e) {
+      // ignore: avoid_print
+      print("config_list.dart");
+      // ignore: avoid_print
+      print(e);
+    }
+    return d;
+  }
+
   void addCard() {
     ConfigListType newState = [
       ...state,
@@ -75,34 +105,12 @@ class ConfigList extends StateNotifier<ConfigListType> {
   }
 
   void setInitialVal() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (!prefs.containsKey(keyName)) {
-      return;
-    }
-    ConfigListType d = initialVal;
-    try {
-      List<String> stArr = prefs.getStringList(keyName) ?? [];
+    final data = await _fetch();
+    state = data;
+  }
 
-      List<Map<String, dynamic>> tmp = stArr.map((e) {
-        final a = json.decode(e);
-        return {
-          "order": a["order"],
-          "url": a["url"],
-          "group": a["group"],
-        };
-      }).toList();
-      d = tmp
-          .map((e) =>
-              Config(url: e["url"], group: e["group"], order: e["order"]))
-          .toList();
-    } catch (e) {
-      // ignore: avoid_print
-      print("config_list.dart");
-      // ignore: avoid_print
-      print(e);
-    } finally {
-      state = d;
-    }
+  Future<ConfigListType> getAvailableLists() async {
+    return await _fetch();
   }
 }
 
