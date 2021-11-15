@@ -58,7 +58,6 @@ class ConfigList extends StateNotifier<ConfigListType> {
   void removeCard(Config target) {
     state.remove(target);
     _save(state);
-
     state = [...state];
   }
 
