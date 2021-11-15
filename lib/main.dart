@@ -30,7 +30,7 @@ class MyApp extends HookConsumerWidget {
         locale,
       ],
       theme: ThemeData.from(colorScheme: lightTheme),
-      initialRoute: '/config',
+      initialRoute: '/',
       routes: {
         '/': (context) => const Home(),
         '/config': (context) => const Config(),

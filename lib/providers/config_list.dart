@@ -104,13 +104,15 @@ class ConfigList extends StateNotifier<ConfigListType> {
     state = newState;
   }
 
-  void setInitialVal() async {
+  void init() async {
     final data = await _fetch();
+    print(data);
     state = data;
   }
 
-  Future<ConfigListType> getAvailableLists() async {
-    return await _fetch();
+  ConfigListType getAvailableLists(ConfigListType target) {
+    target.removeWhere((e) => e.url.startsWith("http://pogstarion.com/"));
+    return target;
   }
 }
 

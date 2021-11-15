@@ -18,7 +18,7 @@ class _ConfigState extends ConsumerState<Config> {
   @override
   void initState() {
     super.initState();
-    ref.read(configListProvider.notifier).setInitialVal();
+    ref.read(configListProvider.notifier).init();
   }
 
   @override
