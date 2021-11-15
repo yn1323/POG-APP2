@@ -44,7 +44,9 @@ class SettingCard extends HookConsumerWidget {
         onTapDown: (_) {
           FocusScope.of(context).unfocus();
           saveCurrentValue(
-              ref, Config(group: tmpGroup, order: info.order, url: tmpUrl));
+            ref,
+            Config(group: tmpGroup, order: info.order, url: tmpUrl),
+          );
         },
         child: Card(
           elevation: 3,

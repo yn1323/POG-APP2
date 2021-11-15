@@ -106,7 +106,6 @@ class ConfigList extends StateNotifier<ConfigListType> {
 
   void init() async {
     final data = await _fetch();
-    print(data);
     state = data;
   }
 
