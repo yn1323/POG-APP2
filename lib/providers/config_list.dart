@@ -31,23 +31,38 @@ class ConfigList extends StateNotifier<ConfigListType> {
   final String keyName = 'configList';
   ConfigList(ConfigListType? initialTask) : super(initialTask ?? []);
 
+  void _save(ConfigListType newState) async {
+    final encoded = newState.map((e) => json.encode(e.toMap())).toList();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    prefs.setStringList(keyName, encoded);
+  }
+
   void addCard() {
-    state = [...state, Config(order: state.length + 1, url: '', group: '')];
+    ConfigListType newState = [
+      ...state,
+      Config(order: state.length + 1, url: '', group: '')
+    ];
+    _save(newState);
+    state = newState;
   }
 
   void reorderCard(int oldIndex, int newIndex) {
     final insertIndex = oldIndex < newIndex ? newIndex - 1 : newIndex;
     final item = state.removeAt(oldIndex);
     state.insert(insertIndex, item);
+    _save(state);
     state = [...state];
   }
 
   void removeCard(Config target) {
     state.remove(target);
+    _save(state);
+
     state = [...state];
   }
 
-  void editCard(Config target) async {
+  void editCard(Config target) {
     ConfigListType newState = [];
     for (var s in state) {
       if (s.order == target.order) {
@@ -56,12 +71,7 @@ class ConfigList extends StateNotifier<ConfigListType> {
         newState.add(s);
       }
     }
-
-    final encoded = newState.map((e) => json.encode(e.toMap())).toList();
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    prefs.setStringList(keyName, encoded);
-
+    _save(newState);
     state = newState;
   }
 
