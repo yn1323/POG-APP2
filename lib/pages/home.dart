@@ -13,7 +13,6 @@ class Home extends ConsumerStatefulWidget {
 
 class _HomeState extends ConsumerState<Home> {
   String title = 'TITLE';
-  Widget body = const Text('ho--iaaaaa');
 
   @override
   void initState() {
@@ -26,7 +25,34 @@ class _HomeState extends ConsumerState<Home> {
     return Scaffold(
       body: BaseAppBar(
         title: title,
-        body: body,
+        body: Column(
+          children: <Widget>[
+            Card(
+              child: SizedBox(
+                width: double.infinity,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        width: 50.0,
+                        height: 50.0,
+                        child: Icon(
+                          Icons.star,
+                          color: Colors.amber[600],
+                        ),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.grey[100],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
       floatingActionButton: const NFloatingActionButton(),
       drawer: const BaseDrawer(),
