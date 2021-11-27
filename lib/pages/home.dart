@@ -1,5 +1,7 @@
 import 'package:pog_app2/imports.dart';
 import 'package:pog_app2/providers/config_list.dart';
+import 'package:pog_app2/widgets/atoms/loading.dart';
+import 'package:pog_app2/widgets/organisms/pog_list.dart';
 import 'package:pog_app2/widgets/templates/base_appbar.dart';
 import 'package:pog_app2/widgets/templates/base_drawer.dart';
 import 'package:pog_app2/widgets/molecules/user_card.dart';
@@ -14,7 +16,6 @@ class Home extends ConsumerStatefulWidget {
 
 class _HomeState extends ConsumerState<Home> {
   String title = 'TITLE';
-
   @override
   void initState() {
     super.initState();
@@ -26,34 +27,7 @@ class _HomeState extends ConsumerState<Home> {
     return Scaffold(
       body: BaseAppBar(
         title: title,
-        body: Column(
-          children: const <Widget>[
-            UserCard(
-              rank: 1,
-              name: "Nameoooooooooooooooooooo",
-              prize: 100,
-              recentPrize: 200,
-            ),
-            UserCard(
-              rank: 2,
-              name: "Nameoooooooooooooooooooo",
-              prize: 100,
-              recentPrize: 200,
-            ),
-            UserCard(
-              rank: 3,
-              name: "Nameoooooooooooooooooooo",
-              prize: 100,
-              recentPrize: 200,
-            ),
-            UserCard(
-              rank: 4,
-              name: "Nameoooooooooooooooooooo",
-              prize: 100,
-              recentPrize: 0,
-            ),
-          ],
-        ),
+        body: const PogList(),
       ),
       floatingActionButton: const NFloatingActionButton(),
       drawer: const BaseDrawer(),

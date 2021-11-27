@@ -15,7 +15,7 @@ class Config {
 
   @override
   String toString() {
-    return 'Todo(order: $order, url: $url, group: $group)';
+    return 'ConfigList(order: $order, url: $url, group: $group)';
   }
 
   Map toMap() {
